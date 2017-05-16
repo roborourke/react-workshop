@@ -10,8 +10,8 @@ const Tab = ({ children, index, onClick, selected }) => {
     .filter( child => child.type !== TabTitle )
 
   return (
-    <div className="tab">
-      <button onClick={ () => onClick( index ) }>{ title }</button>
+    <div className="tab" onClick={ () => onClick( index ) }>
+      { title }
       { selected && content }
     </div>
   )

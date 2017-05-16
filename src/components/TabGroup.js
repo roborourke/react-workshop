@@ -13,6 +13,9 @@ class TabGroup extends React.Component {
 	}
 
 	render() {
+
+		// DO ERROR CHECKS!!
+
 		return (
 			<div className="tab-group">
 				{ Children.map( this.props.children, ( child, index ) => cloneElement( child, {

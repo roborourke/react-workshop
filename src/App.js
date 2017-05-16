@@ -18,7 +18,6 @@ class App extends Component {
               <p>Some content for the first tab</p>
               <p>Some content for the first tab</p>
             </TabContent>
-            <ul><li>Some content for the first tab</li></ul>
           </Tab>
           <Tab>
             <TabTitle>Second</TabTitle>
