@@ -8,7 +8,7 @@ class TabGroup extends React.Component {
 		};
 	}
 
-	onClick( i ) {
+	onClick = ( i ) => {
 		this.setState( { selected: i } )
 	}
 
@@ -20,7 +20,7 @@ class TabGroup extends React.Component {
 			<div className="tab-group">
 				{ Children.map( this.props.children, ( child, index ) => cloneElement( child, {
 					selected: this.state.selected === index,
-					onClick: this.onClick.bind( this ),
+					onClick: this.onClick,
 					index
 				} ) ) }
 			</div>
