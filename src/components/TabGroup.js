@@ -1,11 +1,25 @@
 import React, { Children, cloneElement } from 'react';
 
 class TabGroup extends React.Component {
-	// TODO: Add management of selected tab
+	constructor( props ) {
+		super( props )
+		this.state = {
+			selected: null
+		};
+	}
+
+	onClick( i ) {
+		this.setState( { selected: i } )
+	}
 
 	render() {
 		return (
-			// TODO: Return something here
+			<div className="tab-group">
+				{ Children.map( this.props.children, ( child, i ) => cloneElement( child, {
+					selected: this.state.selected === i,
+					onClick: () => this.onClick( i )
+				} ) ) }
+			</div>
 		)
 	}
 }

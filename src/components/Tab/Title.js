@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default ({ children }) => (
-	// TODO: Build title component
+	<h2 className="tab__title"><a>{ children }</a></h2>
 )

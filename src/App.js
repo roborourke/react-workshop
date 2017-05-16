@@ -14,10 +14,15 @@ class App extends Component {
         <TabGroup>
           <Tab>
             <TabTitle>First</TabTitle>
-            <TabContent>Some content for the first tab</TabContent>
+            <TabContent>
+              <p>Some content for the first tab</p>
+              <p>Some content for the first tab</p>
+            </TabContent>
+            <ul><li>Some content for the first tab</li></ul>
           </Tab>
           <Tab>
             <TabTitle>Second</TabTitle>
+            <TabContent>The second tab also has some content, of course</TabContent>
             <TabContent>The second tab also has some content, of course</TabContent>
           </Tab>
           <Tab>
