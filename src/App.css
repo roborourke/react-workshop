@@ -1,0 +1,28 @@
+body {
+  font: 16px/20px "Input Sans", sans-serif;
+}
+
+.tab-group button {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.tab-group {
+  overflow: hidden;
+  padding: 10px;
+  background: #fcfcfc;
+}
+
+.tab__title {
+  background: #cd5372;
+  padding: 10px 15px;
+  border-radius: 50px;
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tab__content {
+  padding: 10px 15px;
+}
