@@ -15,9 +15,10 @@ class TabGroup extends React.Component {
 	render() {
 		return (
 			<div className="tab-group">
-				{ Children.map( this.props.children, ( child, i ) => cloneElement( child, {
-					selected: this.state.selected === i,
-					onClick: () => this.onClick( i )
+				{ Children.map( this.props.children, ( child, index ) => cloneElement( child, {
+					selected: this.state.selected === index,
+					onClick: this.onClick.bind( this ),
+					index
 				} ) ) }
 			</div>
 		)

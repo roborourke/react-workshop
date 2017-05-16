@@ -1,7 +1,7 @@
 import React, { Children } from 'react';
 import TabTitle from './Title';
 
-const Tab = ({ children, onClick, selected }) => {
+const Tab = ({ children, index, onClick, selected }) => {
   let title = Children
     .toArray( children )
     .filter( child => child.type === TabTitle )
@@ -10,8 +10,8 @@ const Tab = ({ children, onClick, selected }) => {
     .filter( child => child.type !== TabTitle )
 
   return (
-    <div className="tab" onClick={ onClick }>
-      { title }
+    <div className="tab">
+      <button onClick={ () => onClick( index ) }>{ title }</button>
       { selected && content }
     </div>
   )
