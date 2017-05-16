@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Favourites from './Favourites';
 
+import './index.css';
+
 ReactDOM.render(
   <Favourites
-    name="Franz' Favourite Sports"
-    imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Franz_Joseph_of_Austria_1910_old.jpg/469px-Franz_Joseph_of_Austria_1910_old.jpg"
+    name="Bill Murray is now a chef or something"
+    imageUrl="https://fillmurray.com/400/300"
   />,
   document.getElementById('root')
 );
