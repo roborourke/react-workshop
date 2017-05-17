@@ -3,6 +3,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { compose, withState } from 'recompose';
 import withLoading from '../withLoading';
+import { Link } from 'react-router-dom';
 
 const Recipes = ({
   data,
@@ -43,35 +44,52 @@ const Recipes = ({
       >
         <option value={''}>Not active</option>
         {data.ingredients.map(ingredient => (
-          <option value={ingredient._id}>{ingredient.name}</option>
+          <option key={ingredient._id} value={ingredient._id}>{ingredient.name}</option>
         ))}
       </select>
     </div>
     <h1>Recipes</h1>
     {data.recipes.map(({ title, preparation, ingredients, _id }) => (
       <div key={_id}>
-        <h2>{title}</h2>
-        <h3>Preparation</h3>
-        <div>
-          {preparation.map(entry => <p key={entry}>{entry}</p>)}
-        </div>
-        <h3>Ingredients</h3>
-        <div>
-          {ingredients.map(ingredient => (
-            <div key={ingredient._id}>
-              {ingredient.name}
-            </div>
-          ))}
-        </div>
+        <h2><Link to={`/recipe/${_id}`}>{title}</Link></h2>
       </div>
     ))}
   </div>
 );
 
+const withQuery = graphql(gql`
+  query($vegetarian: Boolean, $ingredient: ID) {
+    recipes(
+      vegetarian: $vegetarian
+      ingredient: $ingredient
+    ) {
+      _id
+      title
+      preparation
+      vegetarian
+      ingredients {
+        _id
+        name
+      }
+    }
+    ingredients {
+      _id
+      name
+    }
+  }
+`, {
+  options: props => ({
+    variables: {
+      vegetarian: props.vegetarianFilter,
+      ingredient: props.ingredientFilter,
+    }
+  })
+})
+
 const enhance = compose(
   withState('vegetarianFilter', 'setVegetarianFilter', null),
-  withState('ingredientFilter', 'setIngredientFilter', null),
-  // TODO fill in your graphql higher order component here
+  withState('ingredientFilter', 'setIngredientFilter', ''),
+  withQuery,
   withLoading
 );
 

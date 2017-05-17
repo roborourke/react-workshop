@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Recipes from './Recipes';
-// TODO import from apollo-client, react-apollo and inject the client via ApolloProvider
+import RecipeDetail from './Recipes/Detail';
+import { ApolloProvider, ApolloClient, createNetworkInterface } from 'react-apollo'
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({
+    uri: 'http://localhost:3001',
+  })
+});
 
 ReactDOM.render(
-  <Router>
-    <div>
-      <Route exact path="/" component={Recipes} />
-    </div>
-  </Router>,
+  <ApolloProvider client={ client }>
+    <Router>
+      <div>
+        <Route exact path="/" component={Recipes} />
+        <Route exact path="/recipe/:recipe" component={RecipeDetail} />
+      </div>
+    </Router>
+  </ApolloProvider>,
   document.getElementById('root')
 );

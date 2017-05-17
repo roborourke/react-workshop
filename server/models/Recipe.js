@@ -23,6 +23,10 @@ export const getRecipes = ({ vegetarian, ingredient }) => {
   return recipeDb.find(filters);
 };
 
+export const getRecipe = _id =>
+  recipeDb.find({ _id }).then(result => result && result[0]);
+
+
 /**
  * Add a recipe to the database
  *

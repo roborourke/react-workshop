@@ -7,7 +7,9 @@ import Ingredient from './Ingredient';
 
 const Query = /* GraphQL */`
   type Query {
-    recipes(vegetarian: Boolean, ingredient: String): [Recipe!]
+    recipe(id: ID!): Recipe!
+    recipes(vegetarian: Boolean, ingredient: ID): [Recipe!]
+    ingredient(id: ID!): Ingredient!
     ingredients: [Ingredient!]
   }
 `;
