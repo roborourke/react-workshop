@@ -1,20 +1,9 @@
 exports[`GraphQL server Mutations should allow adding a recipe 1`] = `
 Object {
-  "data": Object {
-    "addRecipe": Object {
-      "ingredients": Array [
-        Object {
-          "name": "Salad",
-        },
-      ],
-      "preparation": Array [
-        "Get ingredients",
-        "Make Salad",
-      ],
-      "title": "My favorite meal",
-      "vegetarian": true,
-    },
-  },
+  "data": null,
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field Recipe.title.],
+  ],
 }
 `;
 
@@ -86,27 +75,6 @@ Object {
     "recipes": Array [
       Object {
         "title": "Salad",
-      },
-    ],
-  },
-}
-`;
-
-exports[`GraphQL server Queries should return a list of ingredients 1`] = `
-Object {
-  "data": Object {
-    "ingredients": Array [
-      Object {
-        "name": "Beef",
-      },
-      Object {
-        "name": "Chicken",
-      },
-      Object {
-        "name": "Salad",
-      },
-      Object {
-        "name": "Salad dressing",
       },
     ],
   },

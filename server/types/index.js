@@ -11,9 +11,20 @@ const Query = /* GraphQL */`
   }
 `;
 
-// TODO: Define your mutations
-const Mutation = /* GraphQL */`
+const Input = /* GraphQL */`
+  input RecipeInput {
+    title: String!
+    vegetarian: Boolean!
+    ingredients: [ID!]
+    preparation: [String!]
+  }
+`;
 
+const Mutation = /* GraphQL */`
+  type Mutation {
+    addIngredient(name: String!): Ingredient!
+    addRecipe(recipe: RecipeInput!): Recipe!
+  }
 `
 
 const Schema = /* GraphQL */`
@@ -23,4 +34,4 @@ const Schema = /* GraphQL */`
   }
 `
 
-export default [Schema, Mutation, Query, Recipe, Ingredient];
+export default [Schema, Mutation, Input, Query, Recipe, Ingredient];

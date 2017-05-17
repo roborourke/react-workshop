@@ -88,7 +88,7 @@ const Recipes = ({
 
 const enhance = compose(
   withState('vegetarianFilter', 'setVegetarianFilter', null),
-  withState('ingredientFilter', 'setIngredientFilter', null),
+  withState('ingredientFilter', 'setIngredientFilter', ''),
   graphql(RecipesQuery, {
     options: ({ vegetarianFilter, ingredientFilter }) => ({
       vegetarianFilter,

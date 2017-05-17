@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { compose, withState } from 'recompose';
+import { compose, withState, withHandlers } from 'recompose';
 import withLoading from '../withLoading';
 
 const AddRecipe = ({
@@ -91,13 +91,49 @@ const AddRecipe = ({
   </form>
 );
 
+const getIngredients = gql`
+  query {
+    ingredients {
+      _id
+      name
+    }
+  }
+`;
+
+const addRecipe = gql`
+  mutation($recipe: RecipeInput!) {
+    addRecipe(recipe: $recipe) {
+      _id
+      title
+    }
+  }
+`;
+
 const enhance = compose(
   withState('title', 'setTitle', ''),
   withState('vegetarian', 'setVegetarian', false),
   withState('preparation', 'setPreparation', ['']),
   withState('ingredientIds', 'setIngredientIds', []),
   withState('successMessage', 'setSuccessMessage', ''),
-  // TODO add ingredients query and add recipe mutation here
+  graphql(getIngredients),
+  graphql(addRecipe),
+  withHandlers({
+    addRecipe: props => event => {
+      event.preventDefault();
+      props.mutate({
+        variables: {
+          recipe: {
+            title: props.title,
+            vegetarian: props.vegetarian,
+            preparation: props.preparation,
+            ingredients: props.ingredientIds,
+          }
+        }
+      }).then(data => {
+        props.setSuccessMessage('added!')
+      })
+    }
+  }),
   withLoading,
 );
 

@@ -21,6 +21,7 @@ export default {
     ingredients: (_, args) => getIngredients(args)
   },
   Mutation: {
-    // TODO add mutations here
+    addIngredient: (_, args) => addIngredient(args.name),
+    addRecipe: (_, args) => addRecipe(args)
   }
 };
