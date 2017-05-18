@@ -15,8 +15,8 @@ const Input = /* GraphQL */`
   input RecipeInput {
     title: String!
     vegetarian: Boolean!
-    ingredients: [ID!]
-    preparation: [String!]
+    ingredients: [ID!]!
+    preparation: [String!]!
   }
 `;
 

@@ -17,9 +17,18 @@ const AddIngredient = ({ data, name, setName, addIngredient, successMessage }) =
   </form>
 );
 
-const addIngredient = gql`
+export const addIngredient = gql`
   mutation($name: String!) {
     addIngredient(name: $name) {
+      name
+    }
+  }
+`
+
+export const getIngredients = gql`
+  query GetIngredients {
+    ingredients {
+      _id
       name
     }
   }
@@ -36,7 +45,10 @@ const enhance = compose(
       props.mutate({
         variables: {
           name: props.name
-        }
+        },
+        refetchQueries: [
+          'GetIngredients'
+        ]
       }).then(data => {
         props.setSuccessMessage('hooray')
       })

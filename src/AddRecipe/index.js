@@ -3,6 +3,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { compose, withState, withHandlers } from 'recompose';
 import withLoading from '../withLoading';
+import { getIngredients } from '../AddIngredient'
 
 const AddRecipe = ({
   data,
@@ -91,15 +92,6 @@ const AddRecipe = ({
   </form>
 );
 
-const getIngredients = gql`
-  query {
-    ingredients {
-      _id
-      name
-    }
-  }
-`;
-
 const addRecipe = gql`
   mutation($recipe: RecipeInput!) {
     addRecipe(recipe: $recipe) {
@@ -128,7 +120,10 @@ const enhance = compose(
             preparation: props.preparation,
             ingredients: props.ingredientIds,
           }
-        }
+        },
+        refetchQueries: [
+          'RecipesQuery'
+        ]
       }).then(data => {
         props.setSuccessMessage('added!')
       })

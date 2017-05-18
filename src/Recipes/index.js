@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { compose, withState } from 'recompose';
 import withLoading from '../withLoading';
 
-const RecipesQuery = gql`
+export const RecipesQuery = gql`
   query RecipesQuery($vegetarianFilter: Boolean, $ingredientFilter: String) {
     recipes(vegetarian: $vegetarianFilter, ingredient: $ingredientFilter) {
       _id

@@ -22,6 +22,6 @@ export default {
   },
   Mutation: {
     addIngredient: (_, args) => addIngredient(args.name),
-    addRecipe: (_, args) => addRecipe(args)
+    addRecipe: (_, { recipe }) => addRecipe(recipe)
   }
 };
